@@ -24,5 +24,13 @@ module.exports = {
             template: 'src/index.html',
             inject: true
         })
-    ]
+    ],
+
+    module: {
+        loaders: [{
+            test: /\.js?$/,
+            exclude: /node_modules/,
+            loader: 'babel-loader'
+        }]
+    }
 };
