@@ -26,8 +26,7 @@ module.exports = {
       inject: true,
     }),
     new webpack.ProvidePlugin({
-      fetch:
-        'imports-loader?this=>global!exports-loader?global.fetch!whatwg-fetch',
+      'fetch': 'imports-loader?this=>global!exports-loader?global.fetch!whatwg-fetch'
     }),
   ],
 
