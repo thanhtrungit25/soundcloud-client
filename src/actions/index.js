@@ -1,4 +1,4 @@
 import { auth } from './auth';
-import { setTracks } from './track';
+import { setTracks, playTrack } from './track';
 
-export { setTracks, auth };
+export { setTracks, auth, playTrack };
