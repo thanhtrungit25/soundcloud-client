@@ -2,6 +2,18 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { CLIENT_ID } from '../../constants/auth';
 
+function LikeButton({ track, onLike }) {
+  return (
+    <span>
+      {
+        track.origin.user_favorite ?
+          <button type="button" onClick={() => onLike(track)}>Unlike</button> :
+          <button type="button" onClick={() => onLike(track)}>Like</button>
+      }
+    </span>
+  );
+}
+
 class Stream extends Component {
   componentDidUpdate() {
     const audioElement = ReactDOM.findDOMNode(this.refs.audio);
@@ -17,7 +29,7 @@ class Stream extends Component {
     }
   }
   render() {
-    const { user, tracks = [], activeTrack, onAuth, onPlay } = this.props;
+    const { user, tracks = [], activeTrack, onAuth, onPlay, onLike } = this.props;
     return (
       <div>
         <div>
@@ -37,16 +49,22 @@ class Stream extends Component {
                 <button type="button" onClick={() => onPlay(track)}>
                   Play
                 </button>
+                <LikeButton track={track} onLike={onLike} />
               </div>
             );
           })}
         </div>
+        <br />
         {activeTrack ? (
-          <audio
-            id="audio"
-            ref="audio"
-            src={`${activeTrack.origin.stream_url}?client_id=${CLIENT_ID}`}
-          />
+          <div>
+            <div>Playing: {activeTrack.origin.title}</div>
+            <LikeButton track={activeTrack} onLike={onLike} />
+            <audio
+              id="audio"
+              ref="audio"
+              src={`${activeTrack.origin.stream_url}?client_id=${CLIENT_ID}`}
+            />
+          </div>
         ) : null}
       </div>
     );
