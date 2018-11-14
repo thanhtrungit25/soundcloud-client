@@ -25,6 +25,10 @@ module.exports = {
       template: 'src/index.html',
       inject: true,
     }),
+    new webpack.ProvidePlugin({
+      fetch:
+        'imports-loader?this=>global!exports-loader?global.fetch!whatwg-fetch',
+    }),
   ],
 
   module: {
