@@ -13,19 +13,7 @@ import { CLIENT_ID, REDIRECT_URI } from './constants/auth';
 
 SC.initialize({ client_id: CLIENT_ID, redirect_uri: REDIRECT_URI });
 
-const tracks = [
-  {
-    id: 1,
-    title: 'Em của ngày hôm qua',
-  },
-  {
-    id: 2,
-    title: 'Cơn mưa ngang qua',
-  },
-];
-
 const store = configureStore();
-store.dispatch(actions.setTracks(tracks));
 
 const history = syncHistoryWithStore(browserHistory, store);
 
