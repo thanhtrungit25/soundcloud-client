@@ -6,11 +6,12 @@ import Stream from './presenter';
 
 function mapStateToProps(state) {
   const { user } = state.auth;
-  const { tracks, activeTrack } = state.track;
+  const { trackEntities, trackIds, activeTrackId } = state.track;
   return {
     user,
-    tracks,
-    activeTrack,
+    trackEntities,
+    trackIds,
+    activeTrackId,
   };
 }
 
