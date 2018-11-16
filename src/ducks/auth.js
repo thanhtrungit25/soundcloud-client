@@ -3,7 +3,7 @@ import SC from 'soundcloud';
 import { map } from 'lodash';
 import { arrayOf, normalize } from 'normalizr';
 import trackSchema from '../schemas/track';
-import { setTracks as doSetTracks } from '../actions/track';
+import { actionCreators as doActionCreators } from './track';
 
 // Actions
 const ME_SET = 'auth/ME_SET';
@@ -21,7 +21,7 @@ function doFetchMe(session) {
     fetch(`//api.soundcloud.com/me?oauth_token=${session.oauth_token}`)
       .then(response => response.json())
       .then(data => {
-        dispatch(setMe(data));
+        dispatch(doSetMe(data));
       });
   };
 }
@@ -39,7 +39,12 @@ function doFetchStream(session) {
           map(data.collection, 'origin'),
           arrayOf(trackSchema),
         );
-        dispatch(doSetTracks(normalized.entities.tracks, normalized.result));
+        dispatch(
+          doActionCreators.doSetTracks(
+            normalized.entities.tracks,
+            normalized.result,
+          ),
+        );
       });
   };
 }

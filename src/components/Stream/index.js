@@ -1,8 +1,8 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as actions from '../../actions';
 import { actionCreators as authActionCreators } from '../../ducks/auth';
+import { actionCreators as trackActionCreators } from '../../ducks/track';
 import Stream from './presenter';
 
 function mapStateToProps(state) {
@@ -19,8 +19,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     onAuth: bindActionCreators(authActionCreators.doAuth, dispatch),
-    onPlay: bindActionCreators(actions.playTrack, dispatch),
-    onLike: bindActionCreators(actions.likeTrack, dispatch),
+    onPlay: bindActionCreators(trackActionCreators.doPlayTrack, dispatch),
+    onLike: bindActionCreators(trackActionCreators.doLikeTrack, dispatch),
   };
 }
 

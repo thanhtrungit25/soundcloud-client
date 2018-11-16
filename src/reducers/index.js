@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
-import track from './track';
+import track from '../ducks/track';
 import auth from '../ducks/auth';
 
 export default combineReducers({
